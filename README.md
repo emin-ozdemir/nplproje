@@ -1,1 +1,7 @@
-# nplproje
+ # nplproje
+Proje, iki farklı temaya sahip Türkçe kısa metinlerden oluşan özgün bir veri seti üzerinde hem metin sınıflandırma hem de olasılıksal metin üretimi görevlerini gerçekleştirir.
+​Sistem tek bir akış içerisinde şu işlemleri yapar:
+​1. Metin Ön İşleme ve Sözlük Oluşturma: Ham Türkçe cümleleri küçük harfe çevirir, noktalama işaretlerini temizler, kelimelere (token) ayırır ve dolgu sözcüklerini (stop words) filtreler. Ardından yalnızca eğitim verisini kullanarak bilinmeyen kelimeler için <UNK> etiketini de içeren bir kelime sözlüğü (vocabulary) oluşturur.
+​2. Sayısal Temsil (Vektörleştirme) ve Benzerlik Analizi: Metinleri bilgisayarın işleyebileceği sayısal vektörlere dönüştürmek için Sayma Vektörleri (Bag of Words) ve TF-IDF ağırlıklandırmasını sıfırdan hesaplar. Oluşturulan vektörler üzerinden metinler arası Öklit Uzaklığı ve Kosinüs Benzerliği değerlerini ölçer.
+​3. Olasılıksal Dil Modeli ve Otomatik Cümle Üretimi: Eğitim verisindeki kelime dizilerini kullanarak 1. Derece Markov Zinciri tabanlı bir dil modeli eğitir. Sıfır olasılık problemini çözmek için Add-One Smoothing uygular; başlangıç olasılık vektörü (\pi) ve durum geçiş matrisi (A) yardımıyla veri setinin dil yapısına benzer yeni cümleler üretir.
+​4. Denetimli Sınıflandırma ve Model Optimizasyonu: TF-IDF vektörlerini girdi olarak kullanarak metinlerin hangi kategoriye ait olduğunu tahmin eden bir Karar Ağacı (Decision Tree) sınıflandırıcısı eğitir. Modelin aşırı öğrenmesini (overfitting) engellemek ve en iyi hiper-parametreleri bulmak için 5-Katlamalı Çapraz Doğrulama (Cross Validation) ile Izgara Arama (Grid Search) uygular. Sonuçları Accuracy, Precision, Recall ve F1-Score metrikleriyle raporlar.
